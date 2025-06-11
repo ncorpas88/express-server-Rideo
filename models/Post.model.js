@@ -22,7 +22,7 @@ const postSchema = new Schema(
             ref: "User",
             required: true
         },
-        distanceKm: {
+        distancekm: {
             type: Number,
             required: true
         },

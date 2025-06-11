@@ -44,5 +44,34 @@ router.get("/:postId", async(req, res, next) => {
     }
 })
 
+//Filtra post por location
+router.get("/location/:city", async(req, res, next) => {
+    try {
+        const response = await Post.find({location: req.params.city})
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
+})
+
+//Actualizar un nuevo post
+router.put("/:postId", verifyToken, async(req,res,next) => {
+    try {
+        const responseFromDB = await Post.findByIdAndUpdate(req.params.postId,
+        {
+            image: req.body.image,
+            title: req.body.title,
+            description: req.body.description,
+            userCreator: req.payload.userCreator,
+            distancekm: req.body.distancekm,
+            location: req.body.location
+        },
+    {new: true})
+    res.json(responseFromDB)
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 module.exports = router

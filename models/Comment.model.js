@@ -20,5 +20,8 @@ const comments = new Schema(
         imagen: {
             type: String
         }
-    }
+    },
+    {    
+    timestamps: true
+  }
 )

@@ -29,8 +29,11 @@ const postSchema = new Schema(
         location: {
             type: String,
             required: true
-        }
-    }
+        },
+    },
+    {    
+    timestamps: true
+  }
 )
 
 const Post = model("Post", postSchema);

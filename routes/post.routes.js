@@ -73,5 +73,16 @@ router.put("/:postId", verifyToken, async(req,res,next) => {
     }
 })
 
+//Borrar un post
+router.delete("/:postId", verifyToken, async(req, res, next) => {
+    try {
+         await Post.findByIdAndDelete(req.params.postId)
+         res.status(200).send({errorMessage: "post eliminado"})
+    } catch (error) {
+        res.status(500).send({errorMessage: "error al eliminar"})
+    }
+   
+})
+
 
 module.exports = router

@@ -4,8 +4,14 @@ const router = require("express").Router();
 const postRouter = require("./post.routes")
 router.use("/post", postRouter)
 
-const userRouter = require("./auth.routes")
-router.use("/auth", userRouter)
+const commentRouter = require("./comment.routes")
+router.use("/comment", commentRouter)
+
+const authRouter = require("./auth.routes")
+router.use("/auth", authRouter)
+
+const userRouter = require("./user.routes")
+router.use("/user", userRouter)
 
 // ℹ️ Test Route. Can be left and used for waking up the server if idle
 router.get("/", (req, res, next) => {

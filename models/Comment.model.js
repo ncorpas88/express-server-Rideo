@@ -1,15 +1,15 @@
 
 const { Schema, model } = require("mongoose");
 
-const comments = new Schema(
+const commentSchema = new Schema(
     {
         userCreator: {
-            type:  mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "User",
             required: true
         },
         postCommented: {
-             type: mongoose.Schema.Types.ObjectId,
+             type: Schema.Types.ObjectId,
             ref: "Post",
             required: true
         },
@@ -25,3 +25,7 @@ const comments = new Schema(
     timestamps: true
   }
 )
+
+const Comment = model("Comment", commentSchema)
+
+module.exports = Comment

@@ -95,6 +95,7 @@ router.get("/verify", verifyToken, (req, res,) => {
 })
 
 
+//Post "/api/auth/logaut" Cerrar sesion
 
 
 module.exports = router

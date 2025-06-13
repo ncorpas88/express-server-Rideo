@@ -4,6 +4,18 @@ const { verifyToken } = require("../middlewares/auth.middlewares");
 const User = require("../models/User.model")
 
 
+//Ver mi perfil
+router.get("/myprofile", verifyToken, async(req, res, next) => {
+    try {
+        const userId = req.payload._id
+        const response = await User.findById(userId)
+        .select("username email image")
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
+})
+
 //Ver el perfir de otro usuario
 router.get("/:userId", async(req, res, next) => {
     try {

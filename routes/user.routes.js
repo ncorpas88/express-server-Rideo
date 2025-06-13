@@ -5,12 +5,10 @@ const User = require("../models/User.model")
 
 
 //Ver mi perfil
-router.get("/myprofile", verifyToken, async(req, res, next) => {
+router.get("/:userId", verifyToken, async(req, res, next) => {
     try {
-        const userId = req.payload._id
-        const response = await User.findById(userId)
-        .select("username email image")
-        res.json(response)
+        const response = await User.findById(req.params.userId)
+        res.status(200).json(response)
     } catch (error) {
         next(error)
     }

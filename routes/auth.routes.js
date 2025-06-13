@@ -41,7 +41,7 @@ router.post("/signup", async(req, res, next) => {
             image
         })
 
-        res.sendStatus(201)
+        res.status(201).json({ message: "Usuario creado exitosamente" })
 
     } catch (error) {
         next(error)

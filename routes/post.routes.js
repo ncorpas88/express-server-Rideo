@@ -14,7 +14,7 @@ router.post("/", verifyToken, async(req, res, next) => {
             description: req.body.description,
             distancekm: req.body.distancekm,
             location: req.body.location,
-            userCreator: req.payload.userCreator
+            userCreator: req.payload._id
         })
         res.json(response)
     } catch (error) {

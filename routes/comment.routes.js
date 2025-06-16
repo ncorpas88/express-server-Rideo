@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const { verifyToken } = require("../middlewares/auth.middlewares");
 const Comment = require("../models/Comment.model")
+const Post = require("../models/Post.model")
 
 
 
@@ -14,6 +15,11 @@ router.post("/:postId", verifyToken, async(req, res, next) => {
             userCreator: req.payload._id,
             postCommented: req.params.postId
     })
+
+    await Post.findByIdAndUpdate(req.params.postId, {
+        $push: {comments: response._id}
+    })
+
     res.json(response)
     } catch (error) {
         next(error)
@@ -25,6 +31,7 @@ router.post("/:postId", verifyToken, async(req, res, next) => {
 router.get("/postCommented/:postId", async(req, res, next) => {
     try {
         const response = await Comment.find({postCommented: req.params.postId})
+        .populate("userCreator")
         .populate("postCommented")
         res.json(response)
     } catch (error) {

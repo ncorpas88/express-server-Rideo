@@ -18,7 +18,10 @@ router.get("/:userId", verifyToken, async(req, res, next) => {
 router.get("/:userId", async(req, res, next) => {
     try {
         const response = await User.findById(req.params.userId)
-        .select("username email image")
+        .populate({
+            path: "posts"
+        })
+        .select("username email image posts")
         res.json(response)
     } catch (error) {
         next(error)

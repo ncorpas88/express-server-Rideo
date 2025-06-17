@@ -29,9 +29,9 @@ router.get("/:userId", async(req, res, next) => {
 })
 
 //Actualizar tu perfil
-router.put("/:userId", verifyToken, async(req,res, next) => {
+router.put("/", verifyToken, async(req,res, next) => {
     try {
-        const responseFromDB = await User.findByIdAndUpdate(req.params.userId,
+        const responseFromDB = await User.findByIdAndUpdate(req.payload._id,
             {
               username: req.body.username ,
               email: req.body.email,

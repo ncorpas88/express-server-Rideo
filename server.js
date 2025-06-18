@@ -12,11 +12,6 @@ require("./db");
 const express = require("express");
 const app = express();
 
-//const cors = require("cors")
-//app.use(cors({
-//  origin: ["https://rideo-app.netlify.app", "http://localhost:5173"],
-//  credential: true
-//}))
 
 // ℹ️ Loads and applies global middleware (CORS, JSON parsing, etc.) for server configurations
 const config = require("./config")

@@ -30,6 +30,7 @@ router.get("/:userId", async(req, res, next) => {
 
 //Actualizar tu perfil
 router.put("/", verifyToken, async(req,res, next) => {
+    console.log(req.body)
     try {
         const responseFromDB = await User.findByIdAndUpdate(req.payload._id,
             {
@@ -38,6 +39,7 @@ router.put("/", verifyToken, async(req,res, next) => {
               image: req.body.image 
             },
         {new:true})
+        
         res.json(responseFromDB)
     } catch (error) {
         next(error)
